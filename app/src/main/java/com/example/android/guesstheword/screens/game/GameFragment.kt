@@ -18,7 +18,6 @@ package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
 import android.text.format.DateUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,15 +28,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.GameFragmentBinding
-import java.text.DateFormat
 
 /**
  * Fragment where the game is played
  */
 class GameFragment : Fragment() {
-    private lateinit var viewModel: GameViewModel
 
     private lateinit var binding: GameFragmentBinding
+    private lateinit var viewModel: GameViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -51,18 +49,8 @@ class GameFragment : Fragment() {
         )
 
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
-
-        binding.correctButton.setOnClickListener { viewModel.onCorrect() }
-        binding.skipButton.setOnClickListener { viewModel.onSkip() }
-
-        /** Setting up LiveData observation relationship **/
-        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
-            binding.wordText.text = newWord
-        })
-
-        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
-            binding.scoreText.text = newScore.toString()
-        })
+        binding.gameViewModel = viewModel
+        binding.lifecycleOwner = this
 
         viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
             binding.timerText.text = DateUtils.formatElapsedTime(newTime)
