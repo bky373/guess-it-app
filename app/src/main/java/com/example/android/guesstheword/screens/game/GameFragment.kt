@@ -49,7 +49,7 @@ class GameFragment : Fragment() {
                 container,
                 false
         )
-        Log.i("GameFragment", "Called ViewModelProviders.of")
+
         viewModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
         binding.correctButton.setOnClickListener { viewModel.onCorrect() }
@@ -68,22 +68,15 @@ class GameFragment : Fragment() {
             binding.timerText.text = DateUtils.formatElapsedTime(newTime)
         })
 
-        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
-            if (hasFinished) {
-                gameFinished()
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { isFinished ->
+            if (isFinished) {
+                val currentScore = viewModel.score.value ?: 0
+                val action = GameFragmentDirections.actionGameToScore(currentScore)
+                findNavController(this).navigate(action)
+                viewModel.onGameFinishComplete()
             }
         })
 
         return binding.root
-    }
-
-    /**
-     * Called when the game is finished
-     */
-    private fun gameFinished() {
-        val currentScore = viewModel.score.value ?: 0
-        val action = GameFragmentDirections.actionGameToScore(currentScore)
-        findNavController(this).navigate(action)
-        viewModel.onGameFinishComplete()
     }
 }
