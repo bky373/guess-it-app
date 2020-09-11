@@ -17,6 +17,7 @@
 package com.example.android.guesstheword.screens.game
 
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.example.android.guesstheword.R
 import com.example.android.guesstheword.databinding.GameFragmentBinding
+import java.text.DateFormat
 
 /**
  * Fragment where the game is played
@@ -54,15 +56,19 @@ class GameFragment : Fragment() {
         binding.skipButton.setOnClickListener { viewModel.onSkip() }
 
         /** Setting up LiveData observation relationship **/
-        viewModel.word.observe(this, Observer { newWord ->
+        viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
             binding.wordText.text = newWord
         })
 
-        viewModel.score.observe(this, Observer { newScore ->
+        viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
 
-        viewModel.eventGameFinish.observe(this, Observer { hasFinished ->
+        viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
+            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
+        })
+
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
             if (hasFinished) {
                 gameFinished()
             }
