@@ -10,7 +10,7 @@ If you get the word right, press **Got It**. If you're stuck, press **Skip**. <b
 The game runs for the specified time and then shows you your score.
 
 ## :bulb: Focused on: App Architecture (UI Layer) :bulb:
-* I've Learned
+* I've Covered
    * Application Architecture
    * ViewModel
    * LiveData
