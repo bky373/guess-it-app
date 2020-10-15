@@ -22,10 +22,6 @@ The game runs for the specified time and then shows you your score.
 
 ## Playing the App
 
-* **Playing the whole game**
-<img width="250" alt = "pressing play" src = "https://user-images.githubusercontent.com/49539592/92930943-b734c680-f47d-11ea-8fa4-ca50d4f9f33b.gif">
-<br/>
-
 * **Pressing the <i>GOT IT</i> button**
   * This increases the current score below the timer
 <img width="250" alt = "pressing got it" src = "https://user-images.githubusercontent.com/49539592/92930375-f282c580-f47c-11ea-944a-21a2708dbdf4.gif">
