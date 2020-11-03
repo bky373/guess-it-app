@@ -11,14 +11,14 @@ The game runs for the specified time and then shows you your score.
 
 ## :bulb: Focused on: App Architecture (UI Layer) :bulb:
 * I've Covered
-   * Application Architecture
-   * ViewModel
-   * LiveData
-   * Data Binding
-   * MVVM
-   * Encapsulation
-   * CountDownTimer
-   * Buzzing(permission.VIBRATE)
+   * **Application Architecture**
+   * **ViewModel**
+   * **LiveData**
+   * **Data Binding**
+   * **MVVM**
+   * **Encapsulation**
+   * **CountDownTimer**
+   * **Buzzing(permission.VIBRATE)**
 
 ## Playing the App
 
